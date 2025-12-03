@@ -76,17 +76,19 @@ export const useInputScreenState = () =>
     }))
   );
 
-// Actions are stable references in Zustand, no need for useShallow
+// Actions selector - useShallow needed to prevent new object reference each render
 export const useInputScreenActions = () =>
-  useJobStore((state) => ({
-    setPrompt: state.setPrompt,
-    setStyle: state.setStyle,
-    startJob: state.startJob,
-    setStatus: state.setStatus,
-    setImageUrl: state.setImageUrl,
-    setError: state.setError,
-    reset: state.reset,
-  }));
+  useJobStore(
+    useShallow((state) => ({
+      setPrompt: state.setPrompt,
+      setStyle: state.setStyle,
+      startJob: state.startJob,
+      setStatus: state.setStatus,
+      setImageUrl: state.setImageUrl,
+      setError: state.setError,
+      reset: state.reset,
+    }))
+  );
 
 // Use for OutputScreen - only subscribes to display data
 export const useOutputScreenState = () =>
@@ -110,11 +112,12 @@ export const useStatusChipState = () =>
   );
 
 // Use for useJobListener hook - mixed state + actions
-// Actions are stable, only currentJobId triggers re-render
 export const useJobListenerState = () =>
-  useJobStore((state) => ({
-    currentJobId: state.currentJobId,
-    setStatus: state.setStatus,
-    setImageUrl: state.setImageUrl,
-    setError: state.setError,
-  }));
+  useJobStore(
+    useShallow((state) => ({
+      currentJobId: state.currentJobId,
+      setStatus: state.setStatus,
+      setImageUrl: state.setImageUrl,
+      setError: state.setError,
+    }))
+  );
