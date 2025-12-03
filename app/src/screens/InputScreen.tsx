@@ -8,8 +8,6 @@ import {
   Alert,
   Image,
   useWindowDimensions,
-  Pressable,
-  Text,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
@@ -31,7 +29,7 @@ export function InputScreen() {
 
   // Optimized selectors - only re-render when specific state changes
   const { prompt, style, status, currentJobId, errorMessage, imageUrl } = useInputScreenState();
-  const { setPrompt, setStyle, startJob, setError, setStatus, setImageUrl, reset } = useInputScreenActions();
+  const { setPrompt, setStyle, startJob, reset } = useInputScreenActions();
 
   // Listen to job updates
   useJobListener();
@@ -138,45 +136,6 @@ export function InputScreen() {
             {/* Style Selector */}
             <StyleSelector selectedStyle={style} onSelectStyle={setStyle} />
 
-            {/* DEV: Test Buttons */}
-            {__DEV__ && (
-              <View style={styles.devButtons}>
-                <Text style={styles.devTitle}>🧪 Test States</Text>
-                <View style={styles.devRow}>
-                  <Pressable
-                    style={[styles.devButton, { backgroundColor: '#3B82F6' }]}
-                    onPress={() => {
-                      startJob('test-job-123');
-                    }}
-                  >
-                    <Text style={styles.devButtonText}>Processing</Text>
-                  </Pressable>
-                  <Pressable
-                    style={[styles.devButton, { backgroundColor: '#22C55E' }]}
-                    onPress={() => {
-                      setStatus('done');
-                      setImageUrl('https://picsum.photos/400');
-                    }}
-                  >
-                    <Text style={styles.devButtonText}>Done</Text>
-                  </Pressable>
-                  <Pressable
-                    style={[styles.devButton, { backgroundColor: '#EF4444' }]}
-                    onPress={() => {
-                      setError('Network error: Failed to generate logo');
-                    }}
-                  >
-                    <Text style={styles.devButtonText}>Failed</Text>
-                  </Pressable>
-                  <Pressable
-                    style={[styles.devButton, { backgroundColor: '#71717A' }]}
-                    onPress={reset}
-                  >
-                    <Text style={styles.devButtonText}>Reset</Text>
-                  </Pressable>
-                </View>
-              </View>
-            )}
           </ScrollView>
 
           {/* Bottom Section */}
@@ -222,34 +181,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.xl,
     paddingTop: spacing.lg,
     paddingBottom: spacing.sm,
-  },
-  // DEV styles
-  devButtons: {
-    padding: 12,
-    backgroundColor: 'rgba(255,255,255,0.05)',
-    borderRadius: 12,
-    gap: 8,
-  },
-  devTitle: {
-    color: '#FAFAFA',
-    fontSize: 12,
-    fontWeight: '600',
-    marginBottom: 4,
-  },
-  devRow: {
-    flexDirection: 'row',
-    gap: 8,
-  },
-  devButton: {
-    flex: 1,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  devButtonText: {
-    color: '#FAFAFA',
-    fontSize: 11,
-    fontWeight: '600',
   },
 });
