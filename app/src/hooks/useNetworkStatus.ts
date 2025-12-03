@@ -12,7 +12,10 @@ export function useNetworkStatus() {
       try {
         const networkState = await Network.getNetworkStateAsync();
         if (isMounted) {
-          setIsConnected(networkState.isConnected ?? true);
+          // Only show offline if explicitly disconnected
+          // null/undefined values default to connected (optimistic)
+          const isOffline = networkState.isConnected === false;
+          setIsConnected(!isOffline);
           setIsChecking(false);
         }
       } catch {

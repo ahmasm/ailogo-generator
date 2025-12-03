@@ -13,7 +13,7 @@ import {
 } from '@expo-google-fonts/manrope';
 import * as SplashScreen from 'expo-splash-screen';
 import { RootNavigator } from './src/navigation/RootNavigator';
-import { ErrorBoundary, OfflineBanner } from './src/components';
+import { ErrorBoundary } from './src/components';
 import { colors } from './src/constants/theme';
 
 // Keep the splash screen visible while we fetch resources
@@ -44,7 +44,6 @@ export default function App() {
         <ErrorBoundary>
           <NavigationContainer>
             <StatusBar style="light" />
-            <OfflineBanner />
             <RootNavigator />
           </NavigationContainer>
         </ErrorBoundary>
