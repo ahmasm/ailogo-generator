@@ -1,0 +1,28 @@
+# Chip Failed Test Flow
+# Tests the failure state handling
+# Note: This test may not always trigger failure (10% chance)
+
+appId: com.feraset.ailogo
+---
+
+- launchApp
+- waitForAnimationToEnd
+
+# Enter prompt and create
+- inputText: "Test logo for failure scenario"
+- tapOn: "Create"
+
+# Wait for either done or failed state
+- extendedWaitUntil:
+    anyVisible:
+      - "Ready"
+      - "Failed"
+    timeout: 70000
+
+# If failed, verify the error message is shown
+- runFlow:
+    when:
+      visible: "Failed"
+    commands:
+      - assertVisible: "Failed"
+      - assertVisible: ".*try again.*"

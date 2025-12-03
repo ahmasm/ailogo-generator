@@ -1,0 +1,53 @@
+# Happy Path Test Flow
+# Tests the complete flow: Input -> Processing -> Done -> Output
+
+appId: com.feraset.ailogo
+---
+
+# Wait for app to load
+- launchApp
+- waitForAnimationToEnd
+
+# Verify we're on the Input Screen
+- assertVisible: "AI Logo"
+- assertVisible: "Enter Your Prompt"
+
+# Enter a prompt
+- tapOn:
+    text: ".*blue lion.*"
+    optional: true
+- inputText: "A minimalist blue lion logo for a tech company"
+
+# Select a style (Monogram)
+- scrollUntilVisible:
+    element: "Monogram"
+    direction: RIGHT
+- tapOn: "Monogram"
+
+# Tap Create button
+- tapOn: "Create"
+
+# Verify processing state
+- assertVisible:
+    text: "Creating"
+    optional: true
+
+# Wait for generation to complete (up to 70 seconds)
+- extendedWaitUntil:
+    visible: "Ready"
+    timeout: 70000
+
+# Tap on the status chip to view result
+- tapOn:
+    text: ".*Ready.*"
+
+# Verify Output Screen
+- assertVisible: "Your Design"
+- assertVisible: "Prompt"
+
+# Close the Output Screen
+- tapOn:
+    text: "✕"
+
+# Verify we're back on Input Screen
+- assertVisible: "AI Logo"
