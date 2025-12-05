@@ -1,6 +1,6 @@
-# AI Logo Generator - FERASET Case Study
+# AI Logo Generator
 
-A demo mobile application simulating "Hexa – AI Logo & Art Generator" built with React Native Expo.
+A mobile application for generating AI-powered logos, built with React Native Expo.
 
 ## Demo Video
 
@@ -21,7 +21,7 @@ A demo mobile application simulating "Hexa – AI Logo & Art Generator" built wi
 ## Project Structure
 
 ```
-feraset/
+ailogo-generator/
 ├── app/                          # React Native Expo app
 │   ├── src/
 │   │   ├── screens/              # InputScreen, OutputScreen
@@ -62,7 +62,7 @@ feraset/
 
 ```bash
 git clone <repo-url>
-cd feraset
+cd ailogo-generator
 
 # Install app dependencies
 cd app
@@ -174,7 +174,7 @@ interface Job {
 | React Navigation | Industry standard, familiar to most RN developers |
 | Zustand | Lightweight, simple API, no boilerplate |
 | Cloudflare R2 | S3-compatible, no vendor lock-in, generous free tier |
-| Python Cloud Functions | Required by case study spec |
+| Python Cloud Functions | Serverless, integrates well with Firestore |
 | No Authentication | Simplified scope for demo purposes |
 | Public R2 Bucket | Acceptable for demo, would use signed URLs in production |
 
