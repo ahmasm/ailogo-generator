@@ -6,7 +6,6 @@ Handles job processing with mock image generation
 import os
 import random
 import time
-from datetime import datetime
 
 from firebase_functions import firestore_fn, options
 from firebase_admin import initialize_app, firestore
