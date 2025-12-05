@@ -17,7 +17,7 @@ import { colors, spacing } from '../constants/theme';
 import { useInputScreenState, useInputScreenActions } from '../store/useJobStore';
 import { useJobListener } from '../hooks/useJobListener';
 import { createJob } from '../services/firebase';
-import { parseError, withRetry, type AppError } from '../utils/errors';
+import { withRetry, type AppError } from '../utils/errors';
 import { JOB_CREATION_RETRY } from '../constants/network';
 import type { RootStackParamList } from '../types';
 

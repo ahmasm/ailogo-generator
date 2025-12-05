@@ -14,7 +14,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import * as Clipboard from 'expo-clipboard';
 import { colors, fontFamily } from '../constants/theme';
-import { fs, sp, lh, radius, s, icon, height } from '../utils/scale';
+import { fs, sp, lh, radius, icon, height } from '../utils/scale';
 import { useOutputScreenState } from '../store/useJobStore';
 import { CloseIcon, CopyIcon } from '../components/icons';
 import { Skeleton } from '../components';

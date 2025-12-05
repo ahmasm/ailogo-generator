@@ -21,9 +21,6 @@ interface JobState {
   reset: () => void;
 }
 
-// Selector types for better performance
-type JobActions = Pick<JobState, 'setPrompt' | 'setStyle' | 'startJob' | 'setStatus' | 'setImageUrl' | 'setError' | 'reset'>;
-
 const initialState = {
   currentJobId: null,
   status: 'idle' as JobStatus,

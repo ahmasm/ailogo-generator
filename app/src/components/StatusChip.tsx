@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -22,7 +22,7 @@ interface StatusChipProps {
   imageUrl?: string | null;
 }
 
-function StatusChipComponent({ status, onPress, errorMessage, imageUrl }: StatusChipProps) {
+function StatusChipComponent({ status, onPress, errorMessage: _errorMessage, imageUrl }: StatusChipProps) {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const spinAnim = useRef(new Animated.Value(0)).current;
 
@@ -93,11 +93,6 @@ function StatusChipComponent({ status, onPress, errorMessage, imageUrl }: Status
 
   const config = getStatusConfig();
   if (!config) return null;
-
-  const spinInterpolate = spinAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'],
-  });
 
   const renderLeftSection = () => {
     switch (status) {

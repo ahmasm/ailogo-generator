@@ -7,9 +7,6 @@ import { fs, sp, lh, radius, height, icon } from '../utils/scale';
 
 const starsIcon = require('../../assets/stars.png');
 
-// Animated LinearGradient
-const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
-
 interface CreateButtonProps {
   onPress: () => void;
   disabled?: boolean;
